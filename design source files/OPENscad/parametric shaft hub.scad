@@ -30,8 +30,8 @@ numberMountingHoles = 4; // [0:10]
 mountingHolesDiameter = 2;
 
 // set the distance of the mounting holes from the center
-holeDist = ((shaftDiameter/2 + shaftClampWallThickness) + (baseDiameter/2)) / 2; // default
-//holeDist = 123; // set any value you prefer by uncommenting this line
+//holeDist = ((shaftDiameter/2 + shaftClampWallThickness) + (baseDiameter/2)) / 2; // default
+holeDist = 12; // set any value you prefer by uncommenting this line
 
 // move the clamping bolt towards or away from the shaft
 // 1 = centered across thickness of clamp wall, lower values are closer to shaft
@@ -102,7 +102,11 @@ difference (){
         if (clampingDesign == "squaredClamp"){
             translate([0,0,baseHeight+epsilon])
             rotate([0,0,-45])
-               cube(size=[(shaftDiameter+shaftClampWallThickness*2)*sqrt(2), (shaftDiameter+shaftClampWallThickness*2)*sqrt(2), clampBaseCutoutHeight]); 
+               cube(size=[(shaftDiameter+shaftClampWallThickness*2)*sqrt(2), (shaftDiameter+shaftClampWallThickness*2)*sqrt(2), clampBaseCutoutHeight]);
+            
+            // and another rectangular slot to allow clearance for moving part of square clamp
+            translate([(shaftDiameter/2),-baseDiameter/2,baseHeight+epsilon])
+               cube(size=[baseDiameter/2, baseDiameter, clampBaseCutoutHeight]);  
         }
     
         // rectangular slot to separate moving part of round clamp from base
