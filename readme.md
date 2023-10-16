@@ -5,3 +5,5 @@ hosted at Carnegie Mellon University on Oct. 18, 2023.
 
 
 [Bill of materials](https://docs.google.com/spreadsheets/d/1xijrm-DChKFw9gDDdRcFoIDSyzxhK_pSsvb_wFuz0gU/edit#gid=0)
+
+[Weblink to Fusion360: Gears](https://a360.co/3tCKbH5)
