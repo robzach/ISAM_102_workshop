@@ -18,5 +18,13 @@ hosted at Carnegie Mellon University on Oct. 18, 2023.
 
 Most design files are contained in this repo, organized by the design software used. Web design links:
 
-* [Weblink to Fusion360: Gears](https://a360.co/3tCKbH5)
+* Weblinks to Fusion360 designs
+	* [Gears](https://a360.co/3tCKbH5)
+	* [Cams](https://a360.co/3Q2uXmd)
+	* [Hub and Tail mount](https://a360.co/46BnlOv)
+	* [Scotty Body and Head](https://a360.co/46BJJr4)
+	* [Chassis Base and Shoulder Wall](https://a360.co/48UUSEZ)
+	* [Acrylic Wall (ignore base in this design)](https://a360.co/3ZZcrQm)
+	* [Tail Constraint Rings](https://a360.co/46RRby6)
+	* [Servo](https://a360.co/3twrqoy)
 * [Parametric Shaft Hub on Thingiverse's Customizer](https://www.thingiverse.com/apps/customizer/run?thing_id=6218998)
