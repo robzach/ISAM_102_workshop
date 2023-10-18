@@ -19,3 +19,4 @@ hosted at Carnegie Mellon University on Oct. 18, 2023.
 Most design files are contained in this repo, organized by the design software used. Web design links:
 
 * [Weblink to Fusion360: Gears](https://a360.co/3tCKbH5)
+* [Parametric Shaft Hub on Thingiverse's Customizer](https://www.thingiverse.com/apps/customizer/run?thing_id=6218998)
