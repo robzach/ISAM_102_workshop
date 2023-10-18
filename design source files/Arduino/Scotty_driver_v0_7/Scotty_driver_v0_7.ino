@@ -17,14 +17,14 @@ pin mappings:
 MH-ET LIVE pin |  role  | description
 ___________________________________________________________________
 A6                input   attached to output leg of IR proximity sensor
-9                 output  driving a continuous rotation servo
+9                 output  driving a FS90R continuous rotation servo
 LED_BUILTIN       output  built-in light used for simple feedback
 
 
 Ard. Pro Micro pin |  role  | description
 ___________________________________________________________________
 A6 (= pin 4)          input   attached to output leg of IR proximity sensor
-9                     output  driving a continuous rotation servo
+9                     output  driving a FS90R continuous rotation servo
 17                    output  built-in light used for simple feedback
 
 
@@ -76,10 +76,10 @@ void loop() {
   if (proxVal < minObserved) minObserved = proxVal;
   if (proxVal > maxObserved) maxObserved = proxVal;
 
-  // set motor speed between 120º and 180º based on latest observation
-  // on a continuous rotation servo, 120º is slow and 180º is 
-  // full speed clockwise
-  int motorVal = map(proxVal, minObserved, maxObserved, 120, 180);
+  // set motor speed between 90º and 180º based on latest observation
+  // on our continuous rotation servos, 90º is stopped and 180º is 
+  // full speed counterclockwise
+  int motorVal = map(proxVal, minObserved, maxObserved, 90, 180);
 
   // set blinking delay based on latest observation
   // note inverted mapping: shorter delay is quicker blinking
