@@ -1,17 +1,17 @@
 # ISAM 102 Workshop
 
-This repository contains files relevant to the ISAM 102 Workshop, offered as part of the [ISAM (International Symposium on Academic Makerspaces)](https://isam2023.hemi-makers.org/) conference 
-hosted at Carnegie Mellon University on Oct. 18, 2023.
+This repository contains files relevant to the ISAM 102 Workshop, offered as part of the [ISAM (International Symposium on Academic Makerspaces)](https://isam2024.hemi-makers.org/) conference 
+hosted at Sheffield University on September 11th, 2024.
 
 ## Key links
 
-* [The workshop slide deck](https://docs.google.com/presentation/d/1b6vMeAFfPFd6-4aEzFwMLTZGBJ-buHvkpjEteAWFyaM/edit?usp=sharing) gives a good overview of the project
-* [Bill of materials](https://docs.google.com/spreadsheets/d/1xijrm-DChKFw9gDDdRcFoIDSyzxhK_pSsvb_wFuz0gU/edit#gid=0) including costs and sources
+* [The workshop slide deck](TODO) gives a good overview of the project
+* [Bill of materials](TODO) including costs and sources
 
 ## Workshop leaders
 
-* [Bill Nace](https://www.ece.cmu.edu/directory/bios/nace-bill.html), Teaching Professor, Electrical and Computer Engineering, Carnegie Mellon University
 * [Robert Zacharias](https://www.andrew.cmu.edu/user/rzachari), Assistant Teaching Professor, Entertainment Technology Center and IDeATe (Integrative Design, Arts, and Technology), Carnegie Mellon University
+* [Robin Graham-Hayes](https://robingh.com/), Fabrication Specialist and Instructor
 
 
 ### Linked building files
@@ -19,12 +19,12 @@ hosted at Carnegie Mellon University on Oct. 18, 2023.
 Most design files are contained in this repo, organized by the design software used. Web design links:
 
 * Weblinks to Fusion360 designs
-	* [Gears](https://a360.co/3tCKbH5)
-	* [Cams](https://a360.co/3Q2uXmd)
-	* [Hub and Tail mount](https://a360.co/46BnlOv)
-	* [Scotty Body and Head](https://a360.co/46BJJr4)
-	* [Chassis Base and Shoulder Wall](https://a360.co/48UUSEZ)
-	* [Acrylic Wall (ignore base in this design)](https://a360.co/3ZZcrQm)
-	* [Tail Constraint Rings](https://a360.co/46RRby6)
-	* [Servo](https://a360.co/3twrqoy)
+	* [Gears](TODO)
+	* [Cams](TODO)
+	* [Hub and Tail mount](TODO)
+	* [Scotty Body and Head](TODO)
+	* [Chassis Base and Shoulder Wall](TODO)
+	* [Acrylic Wall (ignore base in this design)](TODO)
+	* [Tail Constraint Rings](TODO)
+	* [Servo](TODO)
 * [Parametric Shaft Hub on Thingiverse's Customizer](https://www.thingiverse.com/apps/customizer/run?thing_id=6218998)
