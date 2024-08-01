@@ -4,22 +4,25 @@
 
     Adjust any variables to customize geometry, or use Customizer feature to do the same
     
-    Released to the public domain by the author 10/19/23
+    Released to the public domain by the author 8/1/24
 
     Robert Zacharias, rzachari@andrew.cmu.edu
     */
     
-// select style of clamping design:
+/* [Clamp style and overall dimensions] */
+
 //  "roundClamp" gives you a hole for a clamping bolt and nut, and matching relief cuts, good for a smooth shaft; "squaredClamp" adds a large flat which uses more material but gives you a stronger grip on the shaft; "setScrew" gives you one hole facing into the shaft and no relief cuts, good for a shaft with a flat; "none" leaves an uncut cylinder, which could work for a press fit onto a splined shaft
 clampingDesign = "squaredClamp"; // [roundClamp, squaredClamp, setScrew, none]
 
 
-// base that will face surface
+// diameter of base that will face surface
 baseDiameter = 30;
+// height of base that will face surface
 baseHeight = 4;
 
-// raised portion that will clamp shaft
+// thickness of raised portion that will clamp shaft
 shaftClampWallThickness = 5;
+// height of raised portion that will clamp shaft
 shaftClampHeight = 10;
 
 // clearance for through shaft
@@ -33,8 +36,9 @@ mountingHolesDiameter = 2;
 holeDist = ((shaftDiameter/2 + shaftClampWallThickness) + (baseDiameter/2)) / 2;
 // holeDist = 12; // set any value you prefer by uncommenting this line
 
-// move the clamping bolt towards or away from the shaft
-// 1 = centered across thickness of clamp wall, lower values are closer to shaft
+/* [Clamping bolt options] */
+
+// move the clamping bolt towards or away from the shaft; 1 = centered across thickness of clamp wall, lower values are closer to shaft
 clampBoltLateralPositionAdjustment = 0.9; // [0.8:0.05:1]
 
 // slot to separate moving part of clamp from base
@@ -59,9 +63,11 @@ clampingNutAdditionalInsetDepth = 0;
 clampingHardwareProportionalDepth = 1; // [0.25:0.1:1.5]
 
 
-// other variables
+/* [Rendering accuracy] */
 // OpenSCAD rendering accuracy (higher draws more faces)
 $fn = 100; // [10:10:300]
+
+/* [Hidden] */
 // small value to move things a smidge off of a surface
 epsilon = 0.001;
            
