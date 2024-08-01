@@ -27,4 +27,4 @@ Most design files are contained in this repo, organized by the design software u
 	* [Acrylic Wall (ignore base in this design)](TODO)
 	* [Tail Constraint Rings](TODO)
 	* [Servo](TODO)
-* [Parametric Shaft Hub on Thingiverse's Customizer](https://www.thingiverse.com/apps/customizer/run?thing_id=6218998)
+* [Parametric Shaft Hub on Thingiverse's Customizer](TODO because the previously-here link was requiring a login to Thingiverse?)
