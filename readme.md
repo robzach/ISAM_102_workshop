@@ -11,7 +11,7 @@ hosted at Sheffield University on September 11th, 2024.
 ## Workshop leaders
 
 * [Robert Zacharias](https://www.andrew.cmu.edu/user/rzachari), Assistant Teaching Professor, Entertainment Technology Center and IDeATe (Integrative Design, Arts, and Technology), Carnegie Mellon University
-* [Robin Graham-Hayes](https://robingh.com/), Fabrication Specialist and Instructor
+* [Robin Graham-Hayes](https://robingh.com/), Fabrication Specialist and Instructor, Olin College
 
 
 ### Linked building files
