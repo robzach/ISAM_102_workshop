@@ -4,7 +4,7 @@
 
     Adjust any variables to customize geometry, or use Customizer feature to do the same
     
-    Released to the public domain by the author 8/1/24
+    Released to the public domain by the author 8/7/24
 
     Robert Zacharias, rzachari@andrew.cmu.edu
     */
@@ -14,6 +14,8 @@
 //  "roundClamp" gives you a hole for a clamping bolt and nut, and matching relief cuts, good for a smooth shaft; "squaredClamp" adds a large flat which uses more material but gives you a stronger grip on the shaft; "setScrew" gives you one hole facing into the shaft and no relief cuts, good for a shaft with a flat; "none" leaves an uncut cylinder, which could work for a press fit onto a splined shaft
 clampingDesign = "squaredClamp"; // [roundClamp, squaredClamp, setScrew, none]
 
+// reduce overhangs
+optimizeFor3Dprinting = true;
 
 // diameter of base that will face surface
 baseDiameter = 30;
@@ -40,6 +42,9 @@ holeDist = ((shaftDiameter/2 + shaftClampWallThickness) + (baseDiameter/2)) / 2;
 
 // move the clamping bolt towards or away from the shaft; 1 = centered across thickness of clamp wall, lower values are closer to shaft
 clampBoltLateralPositionAdjustment = 0.9; // [0.8:0.05:1]
+
+// move the clamping bolt up or down—especially useful if you're optimizing for 3D printing and wish to move the bolt hole away from the chamfered clamp wall
+clampBoltVerticalPositionAdjustment = 0; // [0:1:5]
 
 // slot to separate moving part of clamp from base
 clampBaseCutoutHeight = 0.5;
@@ -71,7 +76,7 @@ $fn = 100; // [10:10:300]
 // small value to move things a smidge off of a surface
 epsilon = 0.001;
            
-
+           
 difference (){
 
     // base plus clamping part
@@ -103,6 +108,40 @@ difference (){
                     cylinder (h=baseHeight+2*epsilon, r=mountingHolesDiameter/2);
         }
     }
+    
+    if (optimizeFor3Dprinting && (clampingDesign == "squaredClamp" || clampingDesign == "roundClamp")){
+            
+                
+        // teardrop cutout at top of clamping bolt hole
+        // this prevents overhang greater than 45º
+        translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, 0, baseHeight + shaftClampHeight/2 + (clampingBoltDiameter / 8) + clampBoltVerticalPositionAdjustment]) // the last value there is empirical and wonky
+            rotate([90, 0, 0]) 
+                linear_extrude(baseDiameter, center = true, convexity = 1) 
+                    polygon([[-clampingBoltDiameter/2, 0], [clampingBoltDiameter/2, 0], [0, (clampingBoltDiameter/2)*sqrt(2)]]);
+                
+        // additional equilateral triangle cutout at top of bolt cutout to prevent overhang
+               translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, -(shaftClampWallThickness+shaftDiameter/2)+(clampingNutDepth/2)-epsilon, baseHeight + shaftClampHeight/2 + clampBoltVerticalPositionAdjustment])
+            rotate([90, 0, 0]) 
+                linear_extrude(clampingNutDepth, center = true, convexity = 1) 
+                    polygon([[-clampingNutDiameter/2, 0], [clampingNutDiameter/2, 0], [0, clampingNutDiameter/2 * sqrt(3)]]);
+                
+        if (clampingDesign == "squaredClamp"){
+            // 45º chamfer at base of clamping body
+            translate([(shaftDiameter/2 + shaftClampWallThickness), 0, baseHeight + clampBaseCutoutHeight])
+                rotate([90, 0, 0]) 
+                    linear_extrude(baseDiameter, center = true, convexity = 1) 
+                        polygon([[epsilon, epsilon], [epsilon, shaftClampWallThickness + epsilon], [-shaftClampWallThickness, 0]]);
+        }
+        
+        if (clampingDesign == "roundClamp"){
+            // 45º chamfer at base of clamping body
+            translate([(shaftDiameter/2 + shaftClampWallThickness), 0, baseHeight + clampBaseCutoutHeight])
+                rotate([90, 0, 0]) 
+                    linear_extrude(baseDiameter, center = true, convexity = 1) 
+                        polygon([[epsilon, epsilon], [epsilon, shaftClampWallThickness + shaftDiameter/2 + epsilon], [-(shaftClampWallThickness + shaftDiameter/2), 0]]);
+        }
+            
+        }
        
        
     if (clampingDesign == "roundClamp" || clampingDesign == "squaredClamp"){
@@ -110,14 +149,14 @@ difference (){
         // slot for clamping clearance
         translate([0, -clampClearanceWidth/2, baseHeight+epsilon])
            cube(size=[baseDiameter, clampClearanceWidth, shaftClampHeight+epsilon]);
-    
+        
         // hole for clamping bolt
-        translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, baseDiameter/2, baseHeight + shaftClampHeight/2])
+        translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, baseDiameter/2, baseHeight + shaftClampHeight/2 + clampBoltVerticalPositionAdjustment])
             rotate([90, 0, 0])
                 cylinder(h=baseDiameter, r=clampingBoltDiameter/2);
     
         // cutout for hexagonal nut
-        # translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, -(shaftClampWallThickness+shaftDiameter/2)+(clampingNutDepth/2)-epsilon, baseHeight + shaftClampHeight/2])
+        translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, -(shaftClampWallThickness+shaftDiameter/2)+(clampingNutDepth/2)-epsilon, baseHeight + shaftClampHeight/2 + clampBoltVerticalPositionAdjustment])
             rotate([90, 0, 0])
                 hexagon(clampingNutDiameter/2, clampingNutDepth+clampingNutAdditionalInsetDepth, true);  
         
@@ -129,7 +168,7 @@ difference (){
     if (clampingDesign == "squaredClamp"){
         translate([0,0,baseHeight+epsilon])
             rotate([0,0,-45])
-                % cube(size=[(shaftDiameter+shaftClampWallThickness*2)*sqrt(2), (shaftDiameter+shaftClampWallThickness*2)*sqrt(2), clampBaseCutoutHeight]);
+                cube(size=[(shaftDiameter+shaftClampWallThickness*2)*sqrt(2), (shaftDiameter+shaftClampWallThickness*2)*sqrt(2), clampBaseCutoutHeight]);
             
         // and another rectangular slot to allow clearance for moving part of square clamp
         translate([(shaftDiameter/2),-baseDiameter/2,baseHeight+epsilon])
@@ -143,7 +182,7 @@ difference (){
            cube(size=[baseDiameter/2, baseDiameter, clampBaseCutoutHeight]); 
     
         // hole for counterbore for clamping bolt, only for regular "clamp" design
-        translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, shaftClampWallThickness+shaftDiameter*clampingHardwareProportionalDepth - clampingBoltCounterboreAdditionalInsetDepth, baseHeight + shaftClampHeight/2])
+        translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, shaftClampWallThickness+shaftDiameter*clampingHardwareProportionalDepth - clampingBoltCounterboreAdditionalInsetDepth, baseHeight + shaftClampHeight/2 + clampBoltVerticalPositionAdjustment])
             rotate([90, 0, 0])
                 cylinder(h=shaftClampWallThickness, r=clampingBoltCounterboreDiameter/2);
         }
