@@ -1,41 +1,67 @@
 """
-includes CC BY 4.0 code from Garth Zeglin's 16-223 course website sketches:
-analog_input.py
-servo_step.py
+Scotty Dog mechatronic device, Raspberry Pi Pico firmware
+built for "ISAM 102" workshop at the International Symposium of Academic Makerspaces,
+held at the University of Sheffield, Sheffield, UK, Sep. 11–13, 2024
+
+This sketch reads an infrared proximity sensor as an input, and uses the values
+observed to change the speed of a continuous servo motor output. Additionally, it
+reads a potentiometer to set the minimum output speed of the servo motor, and blinks
+an external LED which is the Scotty Dog's eye.
+
+Much more information, including images and electrical schematics, available at
+https://github.com/robzach/ISAM_102_workshop
+
+Pin mapping:
+
+pin number  physical pin    role        description
+-----------------------------------------------------------------------
+GP25        (none)          output      built-in green LED
+GP16        21              output      external LED, Scotty dog's eye
+GP15        20              output      continuous servo motor signal
+A0          31              input       IR proximity sensor
+A1          32              input       potentiometer
+
+
+Incorporates CC BY 4.0 code from Garth Zeglin's 16-223 course website sketches:
+analog_input.py (https://courses.ideate.cmu.edu/16-223/f2024/text/code/pico-analog-io.html#analog-input)
+servo_step.py (https://courses.ideate.cmu.edu/16-223/f2024/text/code/pico-servo.html#servo-step)
+
+CC BY 4.0, 2024, Robert Zacharias, rzachari@andrew.cmu.edu
+
 """
 
 import board, math, time, pwmio, analogio, digitalio, adafruit_simplemath
 
-# Set up built-in green LED for output.
-internal_led = digitalio.DigitalInOut(board.LED)  # GP25
+# set up built-in green LED for output
+internal_led = digitalio.DigitalInOut(board.LED)  # GP25, no physical pin
 internal_led.direction = digitalio.Direction.OUTPUT
 
 # additional LED output
-external_led = digitalio.DigitalInOut(board.GP16)
+external_led = digitalio.DigitalInOut(board.GP16)   # physical pin #21
 external_led.direction = digitalio.Direction.OUTPUT
 
-# Create a PWMOut object on Pin GP0 to drive the servo. The frequency argument
+# Create a PWMOut object on Pin GP15 to drive the servo. The frequency argument
 # specifies the pulse repetition rate in Hz (pulses per second).
-servo = pwmio.PWMOut(board.GP0, duty_cycle=0, frequency=50)  # physical pin #1
+servo = pwmio.PWMOut(board.GP15, duty_cycle=0, frequency=50)  # physical pin #20
 
-# IR proximity sensor, physical pin #31
-sensor = analogio.AnalogIn(board.A0)
+# IR proximity sensor
+sensor = analogio.AnalogIn(board.A0)    # physical pin #31
 
-# potentiometer, physical pin #32
-pot = analogio.AnalogIn(board.A1)
+# potentiometer
+pot = analogio.AnalogIn(board.A1)       # physical pin #32
 
-fastblink = 0.01     # one tenth of a second
-slowblink = 0.5   # two milliseconds
+fastblink = 0.01    # one tenth of a second
+slowblink = 0.5     # two milliseconds
 lastBlink = 0       # the last time the blinking LED changed states
 
 highest = 0         # highest-yet observed value
 lowest = 65536      # lowest-yet observed value
 
 lastUpdate = 0
-interval = 1      # delay between sending serial updates (seconds)
+interval = 1        # delay between sending serial updates (seconds)
 
-minimumServoAngle = 90      # 90º drives continuous servo to stop
-maximumServoAngle = 180     # 180º drives continuous servo at highest speed
+stopServoAngle = 90      # 90º drives continuous servo to stop
+fastestServoAngle = 180     # 180º drives continuous servo at highest speed
 
 
 #### servo function ####
@@ -87,8 +113,8 @@ while True:
         pot_val,
         0,
         65535,
-        minimumServoAngle,
-        maximumServoAngle)
+        stopServoAngle,
+        fastestServoAngle)
 
 
     # set highest and lowest levels based on observations
@@ -105,7 +131,7 @@ while True:
         lowest,
         highest,
         slowestServoAngle,
-        maximumServoAngle)
+        fastestServoAngle)
 
     # calculate blink rate for on-board LED at varying rate as coarse indicator
     blinkInterval = adafruit_simplemath.map_range(
@@ -140,8 +166,3 @@ while True:
             "\tlowest =", lowest,
             "\thighest =", highest)
         lastUpdate = time.monotonic()
-
-    # uncomment the following to print tuples to plot with the mu editor
-#     print((sensor_val, "sensor"), (1000, ""))
-#     print(sensor_val)
-#     time.sleep(0.1)  # slow sampling to avoid flooding
