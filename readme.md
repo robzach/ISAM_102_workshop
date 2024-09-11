@@ -5,8 +5,8 @@ hosted at Sheffield University on September 11th, 2024.
 
 ## Key links
 
-* [The workshop slide deck](TODO) gives a good overview of the project
-* [Bill of materials](TODO) including costs and sources
+* [The workshop slide deck](https://docs.google.com/presentation/d/1Oy_8b9Gv5kr5-NB_zQu05ZZTRZa8bg0rVot0dqpxaOM/edit?usp=sharing) gives a good overview of the project
+* [Bill of materials](https://docs.google.com/spreadsheets/d/1dD2WrZKrT6QTWyRwIu51mhi48CyU9haghI5u2mAC0fM/edit?usp=sharing) including costs and sources
 
 ## Workshop leaders
 
@@ -27,4 +27,3 @@ Most design files are contained in this repo, organized by the design software u
 	* [Acrylic Wall (ignore base in this design)](TODO)
 	* [Tail Constraint Rings](TODO)
 	* [Servo](TODO)
-* [Parametric Shaft Hub on Thingiverse's Customizer](TODO because the previously-here link was requiring a login to Thingiverse?)
