@@ -7,6 +7,7 @@ hosted at Sheffield University on September 11th, 2024.
 
 * [The workshop slide deck](https://docs.google.com/presentation/d/1Oy_8b9Gv5kr5-NB_zQu05ZZTRZa8bg0rVot0dqpxaOM/edit?usp=sharing) gives a good overview of the project
 * [Bill of materials](https://docs.google.com/spreadsheets/d/1dD2WrZKrT6QTWyRwIu51mhi48CyU9haghI5u2mAC0fM/edit?usp=sharing) including costs and sources
+* Most design files are contained in this repo, organized by the design software used. Our Fusion design is viewable (and downloadable) [here](https://a360.co/3XC2OYi).
 
 ## Workshop leaders
 
@@ -14,16 +15,4 @@ hosted at Sheffield University on September 11th, 2024.
 * [Robin Graham-Hayes](https://www.linkedin.com/in/robingh/), Fabrication Specialist and Instructor, Olin College of Engineering
 
 
-### Linked building files
 
-Most design files are contained in this repo, organized by the design software used. Web design links:
-
-* Weblinks to Fusion360 designs
-	* [Gears](TODO)
-	* [Cams](TODO)
-	* [Hub and Tail mount](TODO)
-	* [Scotty Body and Head](TODO)
-	* [Chassis Base and Shoulder Wall](TODO)
-	* [Acrylic Wall (ignore base in this design)](TODO)
-	* [Tail Constraint Rings](TODO)
-	* [Servo](TODO)
