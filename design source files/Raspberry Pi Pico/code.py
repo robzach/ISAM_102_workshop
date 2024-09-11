@@ -61,7 +61,7 @@ lastUpdate = 0
 interval = 1        # delay between sending serial updates (seconds)
 
 stopServoAngle = 90      # 90º drives continuous servo to stop
-fastestServoAngle = 180     # 180º drives continuous servo at highest speed
+fastestServoAngle = 0     # 0º drives the servo at its fastest counterclockwise speed
 
 
 #### servo function ####
