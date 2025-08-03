@@ -1,7 +1,7 @@
 """
 Scotty Dog mechatronic device, Raspberry Pi Pico firmware
 built for "ISAM 102" workshop at the International Symposium of Academic Makerspaces,
-held at the University of Sheffield, Sheffield, UK, Sep. 11–13, 2024
+held at the University of California at Berkeley, August 6, 2025
 
 This sketch reads an infrared proximity sensor as an input, and uses the values
 observed to change the speed of a continuous servo motor output. Additionally, it
@@ -16,7 +16,8 @@ Pin mapping:
 pin number  physical pin    role        description
 -----------------------------------------------------------------------
 GP25        (none)          output      built-in green LED
-GP16        21              output      external LED, Scotty dog's eye
+GP16        21              output      external bi-color LED leg 1, Scotty dog's eye
+GP17        22              output      external bi-color LED leg 2, Scotty dog's eye 
 GP15        20              output      continuous servo motor signal
 A0          31              input       IR proximity sensor
 A1          32              input       potentiometer
@@ -26,7 +27,7 @@ Incorporates CC BY 4.0 code from Garth Zeglin's 16-223 course website sketches:
 analog_input.py (https://courses.ideate.cmu.edu/16-223/f2024/text/code/pico-analog-io.html#analog-input)
 servo_step.py (https://courses.ideate.cmu.edu/16-223/f2024/text/code/pico-servo.html#servo-step)
 
-CC BY 4.0, 2024, Robert Zacharias, rzachari@andrew.cmu.edu
+CC BY 4.0, 2025, Robert Zacharias, rzachari@andrew.cmu.edu
 
 """
 
@@ -36,9 +37,11 @@ import board, math, time, pwmio, analogio, digitalio, adafruit_simplemath
 internal_led = digitalio.DigitalInOut(board.LED)  # GP25, no physical pin
 internal_led.direction = digitalio.Direction.OUTPUT
 
-# additional LED output
-external_led = digitalio.DigitalInOut(board.GP16)   # physical pin #21
-external_led.direction = digitalio.Direction.OUTPUT
+# additional LED outputs (Scotty eye)
+external_led_1 = digitalio.DigitalInOut(board.GP16)   # physical pin #21
+external_led_1.direction = digitalio.Direction.OUTPUT
+external_led_2 = digitalio.DigitalInOut(board.GP17)   # physical pin #22
+external_led_2.direction = digitalio.Direction.OUTPUT
 
 # Create a PWMOut object on Pin GP15 to drive the servo. The frequency argument
 # specifies the pulse repetition rate in Hz (pulses per second).
@@ -140,7 +143,7 @@ while True:
         highest,
         slowblink,
         fastblink)
-
+        
 
     # drive servo
     servo_write(servo, servoPos, debug=False)
@@ -149,10 +152,12 @@ while True:
     if time.monotonic() > (lastBlink + blinkInterval):
         if internal_led.value == False:
             internal_led.value = True
-            external_led.value = False
+            external_led_1.value = True
+            external_led_2.value = False
         else:
             internal_led.value = False
-            external_led.value = True
+            external_led_1.value = False
+            external_led_2.value = True
 
         lastBlink = time.monotonic()
 
