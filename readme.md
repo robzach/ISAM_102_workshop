@@ -4,8 +4,8 @@ This repository contains files relevant to the ISAM 102 Workshop, offered as par
 
 ## Key links
 
-* [The workshop slide deck](TODO) gives a good overview of the project
-* [Bill of materials](TODO) including costs and sources
+* [The workshop slide deck]([TODO](https://docs.google.com/presentation/d/1lfgx7r61DBWelSqBV9T8WLAmH33UfCxg_Bofop4bHoo/edit?usp=sharing)) gives a good overview of the project
+* [Bill of materials]([TODO](https://docs.google.com/spreadsheets/d/1Q51IumBE_j06Qix7HolaOQdSv1IBVW_yVcd7gR8xeUc/edit?usp=sharing)) including costs and sources
 * Most design files are contained in this repo, organized by the design software used. Our Fusion design is viewable (and downloadable) [here](TODO).
 
 ## Workshop leaders
