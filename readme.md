@@ -6,7 +6,9 @@ This repository contains files relevant to the ISAM 102 Workshop, offered as par
 
 * [The workshop slide deck](https://docs.google.com/presentation/d/1lfgx7r61DBWelSqBV9T8WLAmH33UfCxg_Bofop4bHoo/edit?usp=sharing) gives a good overview of the project
 * [Bill of materials](https://docs.google.com/spreadsheets/d/1Q51IumBE_j06Qix7HolaOQdSv1IBVW_yVcd7gR8xeUc/edit?usp=sharing) including costs and sources
-* Most design files are contained in this repo, organized by the design software used. Our Fusion design is viewable (and downloadable) [here](TODO).
+* Most design files are contained in this repo, organized by the design software used. Our Fusion designs are viewable (and downloadable) below:
+  + [Full assembly](https://a360.co/4ouuBFh)
+  + [Updated chassis base](https://a360.co/45b6XpY)
 
 ## Workshop leaders
 
