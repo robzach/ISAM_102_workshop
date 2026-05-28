@@ -50,7 +50,7 @@ clampBoltVerticalPositionAdjustment = 0; // [0:1:5]
 clampBaseCutoutHeight = 1;
 
 // slot for clamping clearance
-clampClearanceWidth = 2.5;
+clampClearanceWidth = 2.5; // [0.5:0.25:5]
 
 // imperial fractions are baked into customizer values below as rounded
 // to nearest thousandth (I can't feed the customizer fractions in its
@@ -60,7 +60,7 @@ clampClearanceWidth = 2.5;
 clampingBoltDiameter = 3.5; // [3:M3, 4:M4]
 clampingBoltCounterboreDiameter = 5.5; // [5.5:M3]
 clampingBoltCounterboreAdditionalInsetDepth = 1;
-clampingNutDiameter = 6.5; // [5.5:M3, 7:M4, 0.344:#8-32, 0.438:1/4-20]
+clampingNutDiameter = 6.5; // [6.35:M3, 8.08:M4, 0.397:#8-32, 0.506:1/4-20]
 clampingNutDepth = 2; // [2.4:M3, 3.2:M4, 0.125:#8-32, 0.219:1/4-20]
 // move the nut cutout deeper into the clamp
 clampingNutAdditionalInsetDepth = 0;
