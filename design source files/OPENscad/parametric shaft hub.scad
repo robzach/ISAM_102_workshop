@@ -20,12 +20,12 @@ optimizeFor3Dprinting = true;
 // diameter of base that will face surface
 baseDiameter = 30;
 // height of base that will face surface
-baseHeight = 4;
+baseHeight = 3;
 
 // thickness of raised portion that will clamp shaft
 shaftClampWallThickness = 5;
 // height of raised portion that will clamp shaft
-shaftClampHeight = 10;
+shaftClampHeight = 14;
 
 // clearance for through shaft
 shaftDiameter = 6.7;
@@ -50,7 +50,7 @@ clampBoltVerticalPositionAdjustment = 0; // [0:1:5]
 clampBaseCutoutHeight = 1;
 
 // slot for clamping clearance
-clampClearanceWidth = 2.5; // [0.5:0.25:5]
+clampClearanceWidth = 1.5; // [0.5:0.25:5]
 
 // imperial fractions are baked into customizer values below as rounded
 // to nearest thousandth (I can't feed the customizer fractions in its
@@ -60,8 +60,10 @@ clampClearanceWidth = 2.5; // [0.5:0.25:5]
 clampingBoltDiameter = 3.5; // [3:M3, 4:M4]
 clampingBoltCounterboreDiameter = 5.5; // [5.5:M3]
 clampingBoltCounterboreAdditionalInsetDepth = 1;
-clampingNutDiameter = 6.5; // [6.35:M3, 8.08:M4, 0.397:#8-32, 0.506:1/4-20]
-clampingNutDepth = 2; // [2.4:M3, 3.2:M4, 0.125:#8-32, 0.219:1/4-20]
+clampingNutHeightFlatToFlat = 5.5; // [5.5:M3, 7:M4, 0.344:#8-32, 0.438:1/4-20]
+// how much additional clearance to give around periphery of clamping nut (to give it a loose fit)
+clampingNutClearance = 0.2; // [0:0.25:5]
+clampingNutDepth = 2.4; // [2.4:M3, 3.2:M4, 0.125:#8-32, 0.219:1/4-20]
 // move the nut cutout deeper into the clamp
 clampingNutAdditionalInsetDepth = 0;
 // typically ~0.75 for "roundClamp", 1 for "squaredClamp"; higher for shallower insets
@@ -70,7 +72,7 @@ clampingHardwareProportionalDepth = 1; // [0.25:0.1:1.5]
 /* [Emboss version text] */
 // emboss text of part version onto top of base
 embossVersion = true; //
-version = "v5";
+version = "v7";
 
 
 /* [Rendering accuracy] */
@@ -135,7 +137,7 @@ difference (){
                translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, -(shaftClampWallThickness+shaftDiameter/2)+(clampingNutDepth/2)-epsilon, baseHeight + shaftClampHeight/usuallyTwo + clampBoltVerticalPositionAdjustment])
             rotate([90, 0, 0])
                 linear_extrude(clampingNutDepth, center = true, convexity = 1)
-                    polygon([[-clampingNutDiameter/2, 0], [clampingNutDiameter/2, 0], [0, clampingNutDiameter/2 * sqrt(3)]]);
+                    polygon([[-clampingNutHeightFlatToFlat/2, 0], [clampingNutHeightFlatToFlat/2, 0], [0, clampingNutHeightFlatToFlat/2 * sqrt(3)]]);
                
         if (clampingDesign == "squaredClamp"){
             // 45º chamfer at base of clamping body
@@ -175,7 +177,7 @@ difference (){
         // cutout for hexagonal nut
         translate([(shaftDiameter/2 + shaftClampWallThickness/2) * clampBoltLateralPositionAdjustment, -(shaftClampWallThickness+shaftDiameter/2)+(clampingNutDepth/2)-epsilon, baseHeight + shaftClampHeight/usuallyTwo + clampBoltVerticalPositionAdjustment])
             rotate([90, 0, 0])
-                hexagon(clampingNutDiameter/2, clampingNutDepth+clampingNutAdditionalInsetDepth, true);  
+                hexagon((clampingNutHeightFlatToFlat + clampingNutClearance)/sqrt(3), clampingNutDepth+clampingNutAdditionalInsetDepth, true);  
        
        
     }
