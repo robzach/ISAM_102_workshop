@@ -62,7 +62,7 @@ clampingBoltCounterboreDiameter = 5.5; // [5.5:M3]
 clampingBoltCounterboreAdditionalInsetDepth = 1;
 clampingNutHeightFlatToFlat = 5.5; // [5.5:M3, 7:M4, 0.344:#8-32, 0.438:1/4-20]
 // how much additional clearance to give around periphery of clamping nut (to give it a loose fit)
-clampingNutClearance = 0.2; // [0:0.25:5]
+clampingNutClearance = 0.5; // [0:0.25:5]
 clampingNutDepth = 2.4; // [2.4:M3, 3.2:M4, 0.125:#8-32, 0.219:1/4-20]
 // move the nut cutout deeper into the clamp
 clampingNutAdditionalInsetDepth = 0;
