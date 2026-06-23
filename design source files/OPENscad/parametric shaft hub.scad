@@ -30,13 +30,21 @@ shaftClampHeight = 14;
 // clearance for through shaft
 shaftDiameter = 6.7;
 
+/* [Mounting holes] */
+
 // mounting holes (0 to however many you want)
 numberMountingHoles = 4; // [0:10]
 mountingHolesDiameter = 3.5; // [2:.1:5]
 
-// set the distance of the mounting holes from the center
-holeDist = ((shaftDiameter/2 + shaftClampWallThickness) + (baseDiameter/2)) / 2;
-// holeDist = 12; // set any value you prefer by uncommenting this line
+// position mounting holes at the midpoint between the base diameter and outer clamp wall
+automaticMountingHolePlacement = true;
+
+// specify a mounting hole distance from center if you prefer not to do it automatically
+manualHoleDist = 12;
+
+holeDist = automaticMountingHolePlacement
+? ((shaftDiameter/2 + shaftClampWallThickness) + (baseDiameter/2)) / 2
+: manualHoleDist;
 
 /* [Clamping bolt options] */
 
