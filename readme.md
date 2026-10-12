@@ -28,7 +28,7 @@ This repository contains files relevant to the ISAM 102 Workshop, offered as par
 
 document | document source (copy and modify) | PDF
 --- | --- | ---
-Bill of Materials (BOM) handout | [Google Sheets BOM](https://docs.google.com/spreadsheets/d/1SMaYd1W7RdJwxCUgwH0dufXo5XOK3xKtL_PFmABzuK0/edit?usp=sharing); [ioRef bolt lengths and simplified schematic](https://drive.google.com/file/d/1bY67-kRYnys0FUMiLNIe3cIf9ZiAv4Ug/view?usp=sharing) | [handout PDF](workshop printouts/ISAM 102 BOM, bolt length chart, reference schematic.pdf)
-More detailed schematic | [ioRef source](https://drive.google.com/file/d/195w9GBgT-5P33YUQ5w68HSQIwB7dRBu5/view?usp=sharing) | [handout PDF](workshop printouts/big schematic.pdf)
-Blown-up breadboard photo | | [handout PDF](workshop printouts/blown-up circuit photo.pdf)
-Order of construction (used by organizers) | [Google Docs source](https://docs.google.com/document/d/1IrMTVL7Qs2d7-0CwFLS_1lchCKMhTqDqpBA163-08qU/edit?usp=sharing) | [PDF](workshop printouts/Order of construction.pdf)
+Bill of Materials (BOM) handout | [Google Sheets BOM](https://docs.google.com/spreadsheets/d/1SMaYd1W7RdJwxCUgwH0dufXo5XOK3xKtL_PFmABzuK0/edit?usp=sharing); [ioRef bolt lengths and simplified schematic](https://drive.google.com/file/d/1bY67-kRYnys0FUMiLNIe3cIf9ZiAv4Ug/view?usp=sharing) | [handout PDF](<workshop printouts/ISAM 102 BOM, bolt length chart, reference schematic.pdf>)
+More detailed schematic | [ioRef source](https://drive.google.com/file/d/195w9GBgT-5P33YUQ5w68HSQIwB7dRBu5/view?usp=sharing) | [handout PDF](<workshop printouts/big schematic.pdf>)
+Blown-up breadboard photo | | [handout PDF](<workshop printouts/blown-up circuit photo.pdf>)
+Order of construction (used by organizers) | [Google Docs source](https://docs.google.com/document/d/1IrMTVL7Qs2d7-0CwFLS_1lchCKMhTqDqpBA163-08qU/edit?usp=sharing) | [PDF](<workshop printouts/Order of construction.pdf>)
