@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Name Tags PDF with Favorite Tool and No Boxes</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h2>Upload CSV and Generate Multi-Page Name Tags PDF</h2>
+  <input type="file" id="csvFile" accept=".csv" />
+  <button id="generateBtn" disabled>Generate PDF</button>
+
+  <script>
+    const { jsPDF } = window.jspdf;
+    let peopleData = [];
+
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      const headers = lines[0].split(',').map(h => h.trim());
+      return lines.slice(1).map(line => {
+        const values = line.split(',').map(v => v.trim());
+        let obj = {};
+        headers.forEach((h, i) => obj[h] = values[i] || "");
+        return obj;
+      });
+    }
+
+    function splitTextIntoLines(pdf, text, maxWidth) {
+      const words = text.split(' ');
+      let lines = [];
+      let currentLine = '';
+
+      for (let word of words) {
+        let testLine = currentLine ? currentLine + ' ' + word : word;
+        let testWidth = pdf.getTextWidth(testLine);
+        if (testWidth > maxWidth && currentLine) {
+          lines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = testLine;
+        }
+      }
+      if (currentLine) lines.push(currentLine);
+      return lines;
+    }
+
+    document.getElementById('csvFile').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        peopleData = parseCSV(event.target.result);
+        document.getElementById('generateBtn').disabled = peopleData.length === 0;
+        alert(`Loaded ${peopleData.length} records from CSV.`);
+      };
+      reader.readAsText(file);
+    });
+
+    document.getElementById('generateBtn').addEventListener('click', () => {
+      if (peopleData.length === 0) {
+        alert('Please upload a CSV file first!');
+        return;
+      }
+
+      const pdf = new jsPDF({
+        unit: "pt",
+        format: "letter",
+        orientation: "portrait"
+      });
+
+      const margin = 36; // 0.5 inch margin
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      const cols = 2;
+      const rows = 5;
+      const tagsPerPage = cols * rows;
+
+      const usableWidth = pageWidth - 2 * margin;
+      const usableHeight = pageHeight - 2 * margin;
+
+      const tagWidth = usableWidth / cols;
+      const tagHeight = usableHeight / rows;
+
+      pdf.setFont("helvetica");
+
+      for (let i = 0; i < peopleData.length; i++) {
+        if (i > 0 && i % tagsPerPage === 0) {
+          pdf.addPage();
+        }
+
+        const person = peopleData[i];
+        const pageIndex = i % tagsPerPage;
+        const col = pageIndex % cols;
+        const row = Math.floor(pageIndex / cols);
+
+        const x = margin + col * tagWidth;
+        const y = margin + row * tagHeight;
+        const centerX = x + tagWidth / 2;
+
+        // First Name
+        pdf.setFontSize(24);
+        pdf.setFont(undefined, "bold");
+        pdf.text(person["First Name"] || person["FirstName"] || "", centerX, y + 40, { align: "center" });
+
+        // Last Name
+        pdf.setFontSize(18);
+        pdf.setFont(undefined, "normal");
+        pdf.text(person["Last Name"] || person["LastName"] || "", centerX, y + 65, { align: "center" });
+
+        // School with line wrapping
+        pdf.setFontSize(14);
+        const maxSchoolWidth = tagWidth * 0.8;
+        const schoolText = person["School"] || "";
+        const schoolLines = splitTextIntoLines(pdf, schoolText, maxSchoolWidth);
+        const schoolStartY = y + 90;
+        const lineHeight = 16;
+        for (let j = 0; j < schoolLines.length; j++) {
+          pdf.text(schoolLines[j], centerX, schoolStartY + j * lineHeight, { align: "center" });
+        }
+
+        // Team name in lower-right
+        pdf.setFontSize(12);
+        pdf.text(
+          person["Team"] || "",
+          x + tagWidth - 10,
+          y + tagHeight - 10,
+          { align: "right", baseline: "bottom" }
+        );
+
+        // Favorite tool line in lower-left
+        pdf.setFontSize(12);
+        pdf.text(
+          "Favorite tool _______________",
+          x + 10,
+          y + tagHeight - 10,
+          { align: "left", baseline: "bottom" }
+        );
+      }
+
+      pdf.save("nametags.pdf");
+    });
+  </script>
+</body>
+</html>
