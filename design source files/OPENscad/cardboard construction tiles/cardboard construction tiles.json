@@ -1,0 +1,48 @@
+{
+    "parameterSets": {
+        "8-3-26 v1": {
+            "cutWidth": "3",
+            "diameter": "50",
+            "fontChoice": "Script",
+            "lineHeightMultiplier": "1.2",
+            "mode": "variableSidedRectangle",
+            "numCuts": "8",
+            "numLeftRightSlots": "2",
+            "numTopBottomSlots": "4",
+            "slotSpacing": "15",
+            "textHeight": "3",
+            "textLines": "[\"What's something that\", \"you recently made?\", \"And did it work?\", \"Or was it a beautiful failure?\"]",
+            "throatDepth": "8"
+        },
+        "8-3-26 8 slot circle v1": {
+            "cutWidth": "3",
+            "diameter": "50",
+            "fontChoice": "Sans",
+            "lineHeightMultiplier": "1.2",
+            "mode": "circleWithSlots",
+            "numCuts": "8",
+            "numLeftRightSlots": "2",
+            "numTopBottomSlots": "4",
+            "slotSpacing": "15",
+            "textHeight": "2",
+            "textLines": "[\"What's something that\", \"you recently made?\", \"And did it work?\", \"Or was it a beautiful failure?\"]",
+            "throatDepth": "8"
+        },
+        "10-8-26": {
+            "cutWidth": "3",
+            "diameter": "50",
+            "fontChoice": "Sans",
+            "lineHeightMultiplier": "1.2",
+            "mode": "variableSidedRectangle",
+            "numCuts": "8",
+            "numLeftRightSlots": "2",
+            "numTopBottomSlots": "4",
+            "slotSpacing": "15",
+            "textHeight": "2",
+            "textLines": "[\"What's something that\", \"you recently made?\", \"And did it work?\", \"Or was it a beautiful failure?\"]",
+            "throatDepth": "8",
+            "writeText": "false"
+        }
+    },
+    "fileFormatVersion": "1"
+}
